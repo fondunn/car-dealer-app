@@ -7,7 +7,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children, className }) => {
   return (
     <main
       className={twMerge(
-        'mx-auto w-full max-w-screen-2xl px-2 md:px-3 lg:px-4',
+        'mx-auto w-full max-w-screen-2xl px-2 py-2 md:px-3 lg:px-4',
         className,
       )}
     >
