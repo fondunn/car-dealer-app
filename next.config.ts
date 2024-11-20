@@ -1,15 +1,10 @@
 import type { NextConfig } from 'next';
-type Output = 'standalone' | 'export' | undefined;
-const basePath =
-  process.env.NODE_ENV === 'development'
-    ? ''
-    : process.env.GH_PAGES_TITLE || '';
 
-const output = (process.env.OUTPUT as Output) || 'standalone';
-
+const isProduction = process.env.NODE_ENV === 'production';
+const GH_REPOSITORY_TITLE = '/car-dealer-app';
 const nextConfig: NextConfig = {
-  output,
-  basePath,
+  output: isProduction ? 'export' : 'standalone',
+  basePath: isProduction ? GH_REPOSITORY_TITLE : '',
   images: {
     unoptimized: true,
   },
