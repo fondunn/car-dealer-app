@@ -8,32 +8,17 @@ import {
 } from '@/components/Select';
 
 import { useYearsRange } from '@/hooks/useYearsRange';
-import { useCars } from '@/hooks/useCars';
 import Link from 'next/link';
 import { useCarsSelector } from '@/hooks/useCarsSelector';
-import { LoaderCircle } from 'lucide-react';
-import { twMerge } from 'tailwind-merge';
 
-const CarSelectorsContainer = () => {
+const CarSelectorsContent = ({ data }: { data: Car[] }) => {
   const years = useYearsRange(2015);
-  const { data, loading } = useCars();
   const { handleChangeSelect, handleClickLink, href, linkDisabled } =
     useCarsSelector();
   return (
     <div className="relative flex flex-col gap-6 p-4">
-      <div
-        className={twMerge(
-          'absolute left-0 top-0 z-10 h-full w-full rounded-md bg-stone-900/50',
-          !loading && 'hidden',
-        )}
-      >
-        <div className="relative flex h-full w-full items-center justify-center">
-          <LoaderCircle className="animate-spin stroke-stone-100" size={40} />
-        </div>
-      </div>
       <div className="flex flex-col gap-4 md:flex-row">
         <Select
-          disabled={loading && true}
           onValueChange={(value) =>
             handleChangeSelect({ value, key: 'makeId' })
           }
@@ -68,7 +53,7 @@ const CarSelectorsContainer = () => {
       </div>
       <Link
         href={href}
-        aria-disabled={linkDisabled}
+        aria-disabled={linkDisabled ? 'true' : undefined}
         onClick={handleClickLink}
         className="mx-auto w-full rounded-md bg-stone-300 px-4 py-2 text-center text-stone-900 aria-disabled:cursor-not-allowed aria-disabled:text-stone-600"
       >
@@ -78,4 +63,4 @@ const CarSelectorsContainer = () => {
   );
 };
 
-export default CarSelectorsContainer;
+export default CarSelectorsContent;

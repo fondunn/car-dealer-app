@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type KeysType = 'makeId' | 'year';
 
@@ -36,13 +36,9 @@ export const useCarsSelector = () => {
     [makeId, year, router],
   );
 
-  const href = useMemo(() => {
-    return `result/${makeId}/${year}`;
-  }, [makeId, year]);
-  const linkDisabled = useMemo(() => {
-    if (!makeId || !year) return true;
-    else return false;
-  }, [makeId, year]);
+  const href = `result/${makeId}/${year}`;
+
+  const linkDisabled = !makeId || !year;
   return {
     handleChangeSelect,
     handleClickLink,
