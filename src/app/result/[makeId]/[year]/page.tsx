@@ -6,28 +6,6 @@ import type { Metadata } from 'next';
 
 type Params = Promise<{ makeId: string; year: string }>;
 
-// type PathParams = {
-//   makeId: string;
-//   year: string;
-// };
-
-// export async function generateStaticParams() {
-//   const data = await getManufacturersData();
-//   const currentYear = new Date().getFullYear();
-//   const paths = data.Results.flatMap((make: { MakeId: number }) => {
-//     const makeId = make.MakeId.toString();
-//     const startYear = 2015;
-//     return Array.from({ length: currentYear - startYear + 1 }, (_, i) => ({
-//       makeId,
-//       year: (startYear + i).toString(),
-//     }));
-//   });
-
-//   return paths.map((param: PathParams) => ({
-//     params: param,
-//   }));
-// }
-
 export async function generateStaticParams() {
   const data = await getManufacturersData();
   const currentYear = new Date().getFullYear();
